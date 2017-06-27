@@ -181,7 +181,7 @@ Webpack 是一个模块打包器。它将根据模块的依赖关系进行静态
 https://github.com/zwhu/blog/issues/17  Node.js 中 module.exports 和 exports 的区别
 
 
-
+https://www.mmxiaowu.com/article/58482558d4352863efb55475  Vue2 dist 目录下各个文件的区别
 
 
 
@@ -521,7 +521,13 @@ https://zhuanlan.zhihu.com/p/20799258?refer=jscss
 http://react-china.org/t/react-router-hashhistory-browserhistory/6799/11
 https://www.npmjs.com/package/history
 
+故障处理
 
+Webpack 的配置比较复杂，很容出现错误，下面是一些通常的故障处理手段。
+
+一般情况下，webpack 如果出问题，会打印一些简单的错误信息，比如模块没有找到。我们还可以通过参数 --display-error-details 来打印错误详情。
+
+https://segmentfault.com/a/1190000007294861  chunksSortMode
 
 
 
