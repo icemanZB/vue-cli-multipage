@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+@import "global";
+
+body {
+  background: $bodyBg;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+body, input, button, textarea {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, 'microsoft yahei', sans-serif;
+  font-size: $fontBaseSize;
+}
+
+body, a {
+  color: $fontBaseColor;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ul, dl, dt, dd, p {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  border: 0;
+}
+
+em, i {
+  font-style: normal;
+}
+
+em {
+  color: $primaryColor;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+  overflow: hidden;
+}
+
+.page {
+  width: $pageWidth;
+  margin: 0 auto;
+}
+
+/* colors */
+.primary {
+  color: $primaryColor;
+}
+
+.gray {
+  color: $gray;
+}
+
+.light-gray {
+  color: $lightGray;
+}
+
+::-webkit-input-placeholder {
+  color: $lightGray;
+}
+
+/* badge */
+.badge {
+  position: relative;
+  padding-right: 16px;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+  > .badge-dot {
+	z-index: 10;
+	position: absolute;
+	transform: translateX(-50%);
+	transform-origin: 0 center;
+	top: -8px;
+	width: 16px;
+	height: 16px;
+	background-color: red;
+	border-radius: 100%;
+  }
+}
+
+/* swiper */
+.swiper-container {
+  width: 100%;
+
+  .swiper-lazy-preloader {
+	width: 84px;
+	height: 84px;
+	margin: -42px 0 0 -42px;
+  }
+}
+
+/* 默认高度跟着内容走，不要随着外部的 div 走 */
+.swiper-slide {
+  height: auto;
+}
+
+.swiper-scrollbar {
+  background-color: transparent;
+}
+
+.swiper-container-vertical > .swiper-scrollbar {
+  width: 6px;
+}
+
+.swiper-scrollbar-drag {
+  background-color: rgba(0, 0, 0, 0.3);
+}

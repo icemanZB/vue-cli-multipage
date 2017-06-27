@@ -22,9 +22,10 @@ module.exports = {
 		// 通过 node 服务进行转发
 		proxyTable        : {
 			'/api': {
-				target     : ['http://99.48.210.179:8090', 'http://172.30.11.179:8090'][0],
+				// 这里端口需要和网址的端口一样
+				target     : ['http://localhost:8089/', 'http://172.30.11.10'][0],
 				pathRewrite: {
-					'^/api': '/'
+					'^/api': '/api'
 				}
 			}
 		},

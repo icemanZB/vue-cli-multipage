@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+//全局变量
+$pageWidth: 750px;
+$pageHeight: 1334px;
+$footerHeight: 100px;
+$zIndexTopBar: 99;
+$zIndexPopup: 999;
+$imgPath: "/static/img/";
+
+//背景
+$bodyBg: #f4f4f4;
+$contentBg: #ffffff;
+
+//颜色
+$fontBaseColor: #202020;
+//$priceColor
+$primaryColor: #e22828;
+$secondaryColor: #5c9ded;
+$lightGray: #9f9f9f;
+$gray: #6a6a6a;
+$pinkColor: #ff8c9e;
+$borderColor: #e6e6e6;
+
+//字号
+$fontSSize: 20px;
+$fontMSize: 24px;
+$fontLSize: 28px;
+$fontXSize: 32px;
+$font2XSize: 36px;
+$font3XSize: 40px;
+$font4XSize: 44px;
+$font5XSize: 48px;
+$fontBaseSize: $fontMSize;
+
+//全局方法
+@function getImgPath($fileName) {
+  @return $imgPath + $fileName;
+}
+
+@mixin singleEllipsis($width:100%) {
+  width: $width;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

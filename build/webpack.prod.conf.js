@@ -13,6 +13,8 @@ let path                  = require('path'),
 
 module.exports = merge(baseWebpackConfig, {
 	module : {
+		// 使用 extract-text-webpack-plugin 就可以把 css从 js 中独立抽离出来
+		// 'style-loader' 一定要单独处理写在前面
 		loaders: [
 			{
 				test  : /\.css$/,
@@ -24,32 +26,42 @@ module.exports = merge(baseWebpackConfig, {
 			}
 		]
 	},
+	// .vue 文件的配置
 	vue    : {
 		loaders: {
 			scss: ExtractTextPlugin.extract('vue-style-loader', 'css-loader!sass-loader!postcss-loader'),
 			sass: ExtractTextPlugin.extract('vue-style-loader', 'css-loader!sass-loader!postcss-loader'),
-			css: ExtractTextPlugin.extract('vue-style-loader', 'css-loader!sass-loader!postcss-loader')
+			css : ExtractTextPlugin.extract('vue-style-loader', 'css-loader!sass-loader!postcss-loader')
 		}
 	},
 	devtool: config.build.productionSourceMap ? '#source-map' : false,
 	output : {
 		path         : config.build.assetsRoot,
 		filename     : `js/[name].js?v=${utils.getVersion()}`,
+		// filename     : 'js/[name].[chunkhash].js',
+		/**
+		 * chunkFilename 用来打包 require.ensure 方法中引入的模块，如果该方法中没有引入任何模块则不会生成任何 chunk 块文件
+		 * chunk 的 hash 值只有在 require.ensure 中引入的模块发生变化，hash 值才会改变
+		 * 注意：对于不是在 ensure 方法中引入的模块，此属性不会生效，只能用 CommonsChunkPlugin 插件来提取
+		 */
 		chunkFilename: `js/[name].js?v=${utils.getVersion()}`
 	},
 	plugins: [
 
+		// 使用 webpack 的 DefinePlugin 来指定生产环境，以便在压缩时可以让 UglifyJS 自动删除代码块内的警告语句
 		new webpack.DefinePlugin({
 			'process.env': {
 				'NODE_ENV': '"production"'
 			}
 		}),
 
+		// 清空生成目录
 		new CleanWebpackPlugin('dist/', {
 			root   : path.resolve(__dirname, '..'),
 			verbose: true
 		}),
 
+		// js 压缩
 		new webpack.optimize.UglifyJsPlugin({
 			output   : {
 				comments: false
@@ -60,10 +72,12 @@ module.exports = merge(baseWebpackConfig, {
 			sourceMap: true
 		}),
 
+		// 提取 css
 		new ExtractTextPlugin(`css/[name].css?v=${utils.getVersion()}`),
 
 		new webpack.optimize.OccurrenceOrderPlugin(),
 
+		// css 压缩
 		new OptimizeCSSPlugin({
 			cssProcessorOptions: {
 				safe: true
@@ -72,10 +86,11 @@ module.exports = merge(baseWebpackConfig, {
 
 		new webpack.optimize.CommonsChunkPlugin({
 			name     : ['components'],
-			minChunks: 2
+			minChunks: 2 // 组件使用2次以上，打包进 components.js 中
 		}),
 
 		new webpack.optimize.CommonsChunkPlugin({
+			// 注意不要.js后缀，提取公共内容
 			name: ['vendor'],
 			minChunks(module) {
 				// console.log(module.resource);
@@ -94,7 +109,9 @@ module.exports = merge(baseWebpackConfig, {
 
 		}),
 
-
+		// 为了避免 hash 值改变，vendor.js 的 hash 也改变了，这样浏览器就不会缓存了
+		// 用 manifest 实现 js 库的增量更新，发现 vendor 的 hash 值并未改变，并且多了一个manifest.js的小文件。
+		// manifest.js 为 webpack 的启动文件代码，它会直接影响到 hash 值，用 mainfest 单独抽出来了，这样 vendor 的 hash 就不会变了。
 		new webpack.optimize.CommonsChunkPlugin({
 			name  : 'manifest',
 			chunks: ['vendor']
@@ -104,20 +121,10 @@ module.exports = merge(baseWebpackConfig, {
 		new TransferWebpackPlugin(
 			[
 				{
-					from: 'static/img', to: '/static/img'
-				},
-				{
 					from: 'static/js', to: '/static/js'
-				},
-				{
-					from: 'static/json', to: '/static/json'
-				},
-				{
-					from: 'static/css', to: '/static/css'
 				}
 			], config.commonPath.rootPath
 		)
-
 	]
 });
 

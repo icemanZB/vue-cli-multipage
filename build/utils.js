@@ -1,4 +1,4 @@
-let glob = require('glob');
+let glob = require('glob'); // glob 模块
 
 // 生成版本控制号
 exports.getVersion = () => {
@@ -16,12 +16,14 @@ exports.getEntries = (globPath) => {
 
 	let entries = {};
 
+	// 获取 src 目录 glob.sync('path')
 	glob.sync(globPath).forEach((entry) => {
 		let tmp = entry.split('/').splice(-3);
 		let moduleName = tmp.slice(1, 2);
 		entries[moduleName] = entry;
 	});
 
+	// 获取的主入口如下： { index: './src/module/index/index.js'}
 	return entries;
 };
 

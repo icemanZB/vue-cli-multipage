@@ -45,16 +45,25 @@ Object.keys(proxyTable).forEach(function (context) {
 		};
 	}
 
-	// console.log('----'+options.target);
-	// if (options.target.indexOf("localhost") >= 0) {
-	//     options.pathRewrite = (path) => {
-	//         if (path.indexOf("?") >= 0) {
-	//             return path.replace('/api/', '/static/json/').replace("?", ".json?");
-	//         }
-	//
-	//         return path.replace('/api/', '/static/json/') + '.json';
-	//     };
-	// }
+	console.log('---------', options.target);
+
+	if (options.target.indexOf("localhost") >= 0) {
+
+		options.pathRewrite = (path) => {
+
+			console.log('<<<<<<<<<< ' + path);
+
+			if (path.indexOf("?") >= 0) {
+
+				console.log('>>>>>> ' + path.replace('/api/', '/static/api/').replace("?", ".json?"));
+
+				return path.replace('/api/', '/static/api/').replace("?", ".json?");
+			}
+
+			return path.replace('/api/', '/static/api/') + '.json';
+		};
+
+	}
 
 	app.use(proxyMiddleware(context, options));
 
