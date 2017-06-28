@@ -83,9 +83,7 @@ cnpm install node-sass --save-dev
    // react-hot-loader 依赖 webpack-dev-server
    npm install webpack-dev-server react-hot-loader --save-dev
 
-webpack 是德国开发者 Tobias Koppers 开发的模块加载器兼打包工具，在 webpack 中，他能把各种资源，
-例如js(含JSX)、coffee、样式(含less/sass)、图片等都作为模块来使用和处理。因此，Webpack 当中 js 可以
-引用 css，css中可以切入图片 dataUrl。
+
 
 为什么要使用 webpack ？
 webpack 是前端一个工具，可以让各个模块进行加载，预处理，再进行打包，它能有 Grunt 或 Gulp 所有基本功能。
@@ -112,25 +110,6 @@ Loaders 是 wepack 中最核心的功能。通过使用不同的loader，webpack
 可以识别的JS文件。或者说对React的开发而言，合适的Loaders可以把React的JSX文件转为JS文件
 
 
-什么是WebPack，为什么要使用它？
-
-为什要使用WebPack
-
-现今的很多网页其实可以看做是功能丰富的应用，它们拥有着复杂的JavaScript代码和一大堆依赖包。
-为了简化开发的复杂度，前端社区涌现出很多好的实践方法。
-
-模块化，让我们可以把复杂的程序细化为小的文件;
-类似于TypeScript这种在JavaScript基础上拓展的开发语言：
-使我们能够实现目前版本的JavaScript不能直接使用的特性，并且之后还能能装换为JavaScript文件使浏览器可以识别；
-Scss，less等CSS预处理器
-...
-这些改进确实大大的提供了我们的开发效率，但是利用它们开发的文件需要进行额外的处理才能让浏览器识别,
-手动处理非常复杂，这就为WebPack类的工具的出现提供了需求。
-
-什么是Webpack
-
-WebPack可以看做是模块打包机：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些预设，
-打包为合适的格式以供浏览器使用。
 
 什么是全局安装？
 
@@ -141,6 +120,7 @@ WebPack可以看做是模块打包机：它做的事情是，分析你的项目�
 一般在 \Users\用户名\AppData\Roaming\ 目录下，可以使用npm root -g查看全局安装目录。
 
 本地安装后可以直接通过require()的方式引入项目中node_modules目录下的模块
+
 
 为什么全局安装还要本地安装？
 
@@ -157,25 +137,9 @@ WebPack可以看做是模块打包机：它做的事情是，分析你的项目�
 
 通常我们会将 Webpack 安装到项目的依赖中，这样就可以使用项目本地版本的 Webpack。
 
-我们为什么需要Webpack？
-
-现在的网站都在演变成为Web Apps:
-页面上的JavaScript越来越多。
-在现代浏览器上用户可以做更多的事情了。
-整个页面重新加载的情况更少了，与此同时，页面上的代码量更大了。
-结果就是：客户端的代码量变得越来越庞大，庞大的代码量意味着我们需要适当地组织代码，
-而模块系统则提供了把代码分割成不同模块的功能。
-
-伴随着移动互联的大潮，当今越来越多的网站已经从网页模式进化到了 Webapp 模式。
-它们运行在现代的高级浏览器里，使用 HTML5、 CSS3、 ES6 等更新的技术来开发丰富的功能，
-网页已经不仅仅是完成浏览的基本需求，并且webapp通常是一个单页面应用，
-每一个视图通过异步的方式加载，这导致页面初始化和使用过程中会加载越来越多的 JavaScript 代码，
-这给前端开发的流程和资源组织带来了巨大的挑战。
 
 
-什么是 Webpack
 
-Webpack 是一个模块打包器。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。
 
 
 https://github.com/zwhu/blog/issues/17  Node.js 中 module.exports 和 exports 的区别
