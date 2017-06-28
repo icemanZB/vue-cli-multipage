@@ -111,34 +111,6 @@ Loaders 是 wepack 中最核心的功能。通过使用不同的loader，webpack
 
 
 
-什么是全局安装？
-
-安装位置
-
-全局安装方式是键入命令：npm install webpack -g 或 npm install webpack --global，
-其中参数-g的含义是代表安装到全局环境里面，包安装在Node安装目录下的node_modules文件夹中，
-一般在 \Users\用户名\AppData\Roaming\ 目录下，可以使用npm root -g查看全局安装目录。
-
-本地安装后可以直接通过require()的方式引入项目中node_modules目录下的模块
-
-
-为什么全局安装还要本地安装？
-
-仅仅全局安装够吗？
-
-1.在js实例代码中，默认下node.js会在NODE_PATH和目前js所在项目下的node_modules文件夹下去寻找模块，
-因此，如果只是全局安装，不能直接通过require()的方式去引用模块，需要手动解决包路径的配置问题，
-当然你也可以复制全局安装的node_modules文件夹到项目下，
-还有办法可以选择将环境变量的NODE_PATH设置为C:\Program Files\nodejs。
-
-2.对于包的更新不好管理，可能你需要为每个包重新命名，如gulp@3.8.1、gulp@3.9.1...，
-为了区别不同项目使用指定的包，保证模块之间的相互依赖，区别每个项目正常运行。
-因此，不推荐只全局安装。
-
-通常我们会将 Webpack 安装到项目的依赖中，这样就可以使用项目本地版本的 Webpack。
-
-
-
 
 
 

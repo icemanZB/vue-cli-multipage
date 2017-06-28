@@ -13,7 +13,7 @@ module.exports = {
 		assetsRoot         : path.resolve(__dirname, '../dist'),
 		assetsSubDirectory : 'static',
 		assetsPublicPath   : '/',
-		productionSourceMap: true
+		productionSourceMap: false
 	},
 	dev       : {
 		port              : 8089,
@@ -23,7 +23,7 @@ module.exports = {
 		proxyTable        : {
 			'/api': {
 				// 这里端口需要和网址的端口一样
-				target     : ['http://localhost:8089/', 'http://172.30.11.10'][0],
+				target     : ['http://localhost:8089/', 'http://172.30.11.10'][1],
 				pathRewrite: {
 					'^/api': '/api'
 				}
