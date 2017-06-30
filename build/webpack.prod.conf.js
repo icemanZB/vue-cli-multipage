@@ -36,15 +36,9 @@ module.exports = merge(baseWebpackConfig, {
 	},
 	devtool: config.build.productionSourceMap ? '#source-map' : false,
 	output : {
-		path         : config.build.assetsRoot,
-		filename     : `js/[name].js?v=${utils.getVersion()}`,
+		path    : config.build.assetsRoot,
+		filename: `js/[name].js?v=${utils.getVersion()}`,
 		// filename     : 'js/[name].[chunkhash].js',
-		/**
-		 * chunkFilename 用来打包 require.ensure 方法中引入的模块，如果该方法中没有引入任何模块则不会生成任何 chunk 块文件
-		 * chunk 的 hash 值只有在 require.ensure 中引入的模块发生变化，hash 值才会改变
-		 * 注意：对于不是在 ensure 方法中引入的模块，此属性不会生效，只能用 CommonsChunkPlugin 插件来提取
-		 */
-		chunkFilename: `js/[name].js?v=${utils.getVersion()}`
 	},
 	plugins: [
 
